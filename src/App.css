@@ -1,42 +1,51 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+html{
+  height: 100%;
+}
+body{
+  /* height: 100%; */
+  margin:0;
+}
+#root{
+  /* height:100%; */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.wrap {
+  display: flex;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.my-list {
+  margin-top: 20px;
+  width: 700px;
+  height: 800px;
+  /* height: 100%; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.my-list-item {
+  padding: 10px;
+  color: #555;
+  box-sizing: border-box;
+  border-bottom: 1px solid #999;
+  /* background: greenyellow; */
+  text-align: left;
 }
 
-.card {
-  padding: 2em;
+.infinite-loading {
+  box-sizing: content-box;
+  padding: 10px;
+  /* background: greenyellow; */
+  border-bottom: 1px solid #999;
+} 
+
+.my-list-loader {
+  display: flex;
+  justify-content: center;
+  color: #555;
+  box-sizing: content-box;
+  padding: 10px;
+  /* background: greenyellow; */
+  border-bottom: 1px solid #999;
 }
 
-.read-the-docs {
-  color: #888;
+.infinite-list-container {
+  resize: both;
 }

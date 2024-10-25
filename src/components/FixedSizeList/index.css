@@ -1,0 +1,30 @@
+.infinite-fixed-list-container {
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+.infinite-fixed-list-phantom {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.infinite-fixed-list {
+  left: 0;
+  right: 0;
+  top: 0;
+  position: absolute;
+  text-align: center;
+}
+
+.infinite-fixed-list-item {
+  padding: 10px;
+  color: #555;
+  box-sizing: border-box;
+  border-bottom: 1px solid #999;
+  background: red;
+}
