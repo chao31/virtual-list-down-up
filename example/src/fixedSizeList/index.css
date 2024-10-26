@@ -1,0 +1,15 @@
+html{
+  height: 100%;
+}
+body{
+  /* height: 100%; */
+  margin:0;
+}
+
+
+.my-list {
+  margin-top: 20px;
+  width: 700px;
+  height: 800px;
+}
+

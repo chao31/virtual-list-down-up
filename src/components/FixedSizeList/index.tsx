@@ -8,7 +8,7 @@ const listData = new Array(100).fill(true).map((item, index) => ({
 }));
 
 // 每项高度
-const itemSize = 200;
+const itemSize = 40;
 
 const Index = () => {
   const [screenHeight, setScreenHeight] = useState(0);
