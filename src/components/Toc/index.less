@@ -1,0 +1,39 @@
+.toc {
+  padding: 0 12px 12px;
+
+  h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 18px 0 6px;
+    font-weight: lighter;
+    font-size: 24px;
+  }
+
+  .toc-title-1 {
+    margin: 12px 0;
+  }
+
+  .toc-item {
+    padding-left: 12px;
+    list-style-type: none;
+
+    &.active {
+      .toc-link {
+        color: #ec5f67;
+      }
+    }
+  }
+
+  .toc-link {
+    color: #546e7a;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline; /* 悬停时添加下划线 */
+    }
+  }
+  
+}
