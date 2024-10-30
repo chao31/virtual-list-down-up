@@ -1,33 +1,36 @@
-import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import loadable from '@loadable/component';
 import Layout from '../layout';
+import { VariableSizeList } from '@/components';
+import Demo from '@/components/Demo';
 
-// const Redirect = ({ to }) => <Navigate to={to} replace />;
+const Redirect = ({ to }) => <Navigate to={to} replace />;
 
-// const Not404 = loadable(() => import(/* webpackChunkName: "not404" */ '@/pages/404'));
-// const Blank = loadable(() => import(/* webpackChunkName: "blank" */ '@/pages/blank'));
+const Up = loadable(() => import(/* webpackChunkName: "up" */ '@/components/up/'));
 
 export const ROUTES = [
   {
     path: '/',
     element: <Layout />,
     children: [
-      // {
-      //   path: '',
-      //   element: <Redirect to="/search" />,
-      // },
-      // {
-      //   path: 'search',
-      //   element: <Ai />,
-      // },
-      // {
-      //   path: '404',
-      //   Component: Not404,
-      // },
-      // {
-      //   path: 'blank',
-      //   Component: Blank,
-      // },
+      {
+        path: '',
+        element: <Redirect to="variable-size-list" />,
+      },
+      {
+        path: 'variable-size-list',
+        // element: <VariableSizeList />,
+        element: <Demo />,
+        
+      },
+      {
+        path: 'pull-load-for-more',
+        Component: Up,
+      },
+      {
+        path: '*',
+        element: <Redirect to="variable-size-list" />,
+      },
     ],
   },
 ];

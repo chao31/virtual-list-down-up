@@ -11,18 +11,49 @@
   }
 
   .toc-title-1 {
+    font-size: 12px;
     margin: 12px 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #263238;
   }
 
   .toc-item {
+    position: relative;
+    display: flex;
     padding-left: 12px;
     list-style-type: none;
+    align-items: center;
+    line-height: 24px;
+
+    &.active:after{
+      display: inline-block;
+      content: " ";
+      height: 0;
+      position: absolute;
+      right: -12px;
+      margin-bottom: 8px;
+      width: 0;
+      border-bottom: 9px solid transparent;
+      border-top: 9px solid transparent;
+      border-right: 9px solid #263238;
+
+      // content: '';
+      // position: absolute;
+      // left: 0;
+      // top: 0;
+      // width: 4px;
+      // height: 100%;
+      // background-color: #ec5f67;
+    }
 
     &.active {
       .toc-link {
         color: #ec5f67;
       }
     }
+
+
   }
 
   .toc-link {

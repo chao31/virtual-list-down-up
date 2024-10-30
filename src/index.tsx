@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, useRoutes } from 'react-router-dom';
+import { HashRouter, useRoutes } from 'react-router-dom';
 import { ROUTES } from './route';
 
 import './index.css';
@@ -11,8 +11,8 @@ const App = () => {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter basename="/">
+    <HashRouter basename="/">
       <App />  
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>,
 )
