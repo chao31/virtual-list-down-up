@@ -1,9 +1,11 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import VariableSizeList, {
-  ExposeListData,
-} from '../src/components/VariableSizeList';
+// import VariableSizeList, {
+//   ExposeListData,
+// } from '../src/components/VariableSizeList';
+
+import { VariableSizeList } from 'virtual-list-down-up';
 import * as faker from 'faker';
 
 import './index.css';
