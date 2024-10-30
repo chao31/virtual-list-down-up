@@ -13,7 +13,7 @@ function CodeHighlight({language = 'typescript', code = ''}) {
   }, []);
 
   
-  return <pre><code className="language-typescript" dangerouslySetInnerHTML={{ __html: codeHighlight }}></code></pre>;
+  return <pre><code className="code-highlight language-typescript" dangerouslySetInnerHTML={{ __html: codeHighlight }}></code></pre>;
 }
 
 export default CodeHighlight;
