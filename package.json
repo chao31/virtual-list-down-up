@@ -3,9 +3,19 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "files": ["dist"],
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.umd.cjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.umd.cjs",
+      "require": "./dist/index.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "lint": "eslint .",
     "preview": "vite preview"
   },
   "peerDependencies": {
