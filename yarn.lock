@@ -1507,10 +1507,10 @@ util@^0.10.3:
   dependencies:
     inherits "2.0.3"
 
-virtual-list-down-up@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/virtual-list-down-up/-/virtual-list-down-up-1.0.1.tgz#6ea431935eaf4687397abf84852b038f43b9b7b9"
-  integrity sha512-X+598F8GV60Mu6JhQLqIXIGgZp4qDAbQbjI5sCHIiXSP+MJIqW1GAv/iaDcV49wGfglxV7cbgeyo6CMy6ROGTw==
+virtual-list-down-up@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/virtual-list-down-up/-/virtual-list-down-up-1.0.2.tgz#2fe78c1d9fb52c60e122fc836ee6dd1ac7401b45"
+  integrity sha512-P76wYdbVjuIbUzMfyCH3vze3x98nYRRcN4f2dDaBm+YLsjoCDHnRDGjIKiwG0QfgaDzCCCJVULWBJXFDGM5C+Q==
 
 vite@^5.4.9:
   version "5.4.10"
