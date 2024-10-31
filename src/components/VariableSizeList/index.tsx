@@ -88,6 +88,7 @@ const Index = fixedForwardRef<ExposeListData, VariableSizeListProps>(
     window.setVlistData = setVlistData;
     window.vlistData2 = vlistData2;
     window.setStart = setStart;
+    console.log(4459900);
 
     // 根据预估item高度，初始化一份list高度数组
     const initPositions = (len?) => {
