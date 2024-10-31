@@ -2,12 +2,14 @@
   "name": "virtual-list-down-up",
   "version": "1.0.0",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/index.umd.cjs",
-  "module": "./dist/index.umd.cjs",
+  "module": "./dist/index.cjs",
   "exports": {
     ".": {
-      "import": "./dist/index.umd.cjs",
+      "import": "./dist/index.cjs",
       "require": "./dist/index.umd.cjs"
     }
   },
@@ -37,6 +39,7 @@
     "react-dom": "^18.3.1",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.10.0",
+    "virtual-list-down-up": "^1.0.0",
     "vite": "^5.4.9"
   }
 }

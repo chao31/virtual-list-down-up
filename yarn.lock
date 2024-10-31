@@ -1507,6 +1507,11 @@ util@^0.10.3:
   dependencies:
     inherits "2.0.3"
 
+virtual-list-down-up@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/virtual-list-down-up/-/virtual-list-down-up-1.0.0.tgz#fb8715c3eeac3cb6debe07478896d6497b871b04"
+  integrity sha512-/LTobUkXcPqDMkOeBjey7o/kojPUng3nfVKK6mND1fp+uqwNimh+jtGWuOEuINs0KO5H+H7kQ5svogtfH/4s5g==
+
 vite@^5.4.9:
   version "5.4.10"
   resolved "https://registry.npmmirror.com/vite/-/vite-5.4.10.tgz#d358a7bd8beda6cf0f3b7a450a8c7693a4f80c18"
