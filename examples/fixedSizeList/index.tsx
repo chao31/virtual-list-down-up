@@ -24,7 +24,7 @@ const Index = () => {
 
 
 createRoot(document.getElementById('root')!).render(
-  // <StrictMode>
+  <StrictMode>
     <Index />
-  // </StrictMode>,
+  </StrictMode>,
 )

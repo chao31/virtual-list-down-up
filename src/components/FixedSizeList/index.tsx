@@ -14,7 +14,7 @@ const Index = () => {
   const [screenHeight, setScreenHeight] = useState(0);
   const [startOffset, setStartOffset] = useState(0);
   const [start, setStart] = useState(0);
-  const listDomRef = useRef(null);
+  const listDomRef = useRef<HTMLDivElement>(null);
 
   // 列表总高度
   const listHeight = listData.length * itemSize;
@@ -28,12 +28,12 @@ const Index = () => {
   const getTransform = `translate3d(0, ${startOffset}px, 0)`;
 
   useEffect(() => {
-    setScreenHeight(listDomRef.current.clientHeight);
+    setScreenHeight((listDomRef.current as HTMLDivElement).clientHeight);
   }, []);
 
   const scrollEvent = () => {
     //当前滚动位置
-    let scrollTop = listDomRef.current.scrollTop;
+    const scrollTop = (listDomRef.current as HTMLDivElement).scrollTop;
     //此时的开始索引
     setStart(Math.floor(scrollTop / itemSize));
     //此时的偏移量
