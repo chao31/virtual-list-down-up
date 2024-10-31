@@ -1,15 +1,34 @@
-import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
+import { useEffect, useRef, useLayoutEffect } from "react";
+import { RefObject } from "react";
+import DownRefresh from "./DownRefresh";
+import UpRefesh from "./UpRefesh";
 
-import DownRefresh from './DownRefresh';
-import UpRefesh from './UpRefesh';
+interface RowProps {
+  topLoadMoreCallback: () => void;
+  bottomLoadMoreCallback: () => void;
+  listConDomRef: RefObject<HTMLElement>;
+  hasMoreTopData: boolean;
+  hasMoreBottomData: boolean;
+  isFirstRender: { current: boolean };
+  oldHeight: number;
+  start: number;
+  setStart: (value: number) => void;
+  index: number;
+  item: any;
+  updatePostionAndOffset: () => void;
+  children: React.ReactNode | Function;
+  loaderAtTop: boolean;
+  loaderAtBottom: boolean;
+  len: number;
+  loadMoreCB?: () => void;
+}
 
-const Row = ({
+const Row: React.FC<RowProps> = ({
   topLoadMoreCallback,
   bottomLoadMoreCallback,
   listConDomRef,
   hasMoreTopData,
   hasMoreBottomData,
-  pauseScrollListening,
   isFirstRender,
   oldHeight,
   start,
@@ -23,49 +42,39 @@ const Row = ({
   len,
   loadMoreCB,
 }) => {
-  const rowRef = useRef(null);
+  const rowRef = useRef<HTMLDivElement>(null);
   const isFirsrRef = useRef(false);
   const lastItemRef = useRef(null);
   const shoulScrollUpToHidePullDom = index === 1 && isFirstRender.current;
 
+  // 判断是否隐藏下拉刷新，第一次渲染且第一个dom加载完毕，会往上滚动，不展示下拉刷新
   useEffect(() => {
-  // useEffect(() => {
-    // 上拉加载时，动态渲染出顶部 dom 后，若其高度跟estimatedItemSize不一致，会导致下面dom往下排列，需通过滚动调整使页面不动
-    // updateScrollTop();
-    // updatePostionAndOffset();
-    // 判断是否隐藏下拉刷新，第一次渲染且第一个dom加载完毕，会往上滚动，不展示下拉刷新
     hideDownDom();
   }, []);
 
   useLayoutEffect(() => {
     updatePostionAndOffset();
-    // updateScrollTop是副作用函数，解决严格模式下预发环境会执行2次问题
-    if(!isFirsrRef || lastItemRef.current !== item) {
-      updateScrollTop();
-    };
-    lastItemRef.current = item;
-    isFirsrRef.current = true;
+    updateScrollTopWithoutSideEffect();
   }, [item]);
 
+  // updateScrollTop是副作用函数，解决严格模式下预发环境会执行2次问题
+  const updateScrollTopWithoutSideEffect = () => {
+    if (!isFirsrRef || lastItemRef.current !== item) {
+      updateScrollTop();
+    }
+    lastItemRef.current = item;
+    isFirsrRef.current = true;
+  };
+
   const updateScrollTop = () => {
+    if (!rowRef.current || !listConDomRef.current) return;
+
     const height = rowRef.current.getBoundingClientRect().height;
     const dValue = height - oldHeight;
-    console.log('dValue: ', oldHeight, height, index < start && '前');
-    console.log('99999', 'row', index, index < start);
-    if(dValue) {
-      console.log('哈哈', index, start);
-    }
-    // console.log(111, index , start);
 
     // 有高度变化，且是视口上方的 dom
     if (dValue && index <= start) {
-      // pauseScrollListening.current = true;
-      // console.log(55556, '后1' , pauseScrollListening.current);
       listConDomRef.current.scrollTop = listConDomRef.current.scrollTop + dValue;
-        // requestAnimationFrame(() => {
-          // pauseScrollListening.current = false;
-          // console.log(55556, '后2' , pauseScrollListening.current);
-        // });
     }
   };
 
@@ -74,7 +83,7 @@ const Row = ({
 
     isFirstRender.current = false;
     setStart(1);
-    rowRef.current.scrollIntoView();
+    rowRef.current?.scrollIntoView();
   };
 
   if (index === 0) {
@@ -105,15 +114,8 @@ const Row = ({
     );
 
   return (
-    <div
-      ref={rowRef}
-      className="infinite-list-item"
-      key={index}
-      data-id={index}
-    >
-      {typeof children === 'function'
-        ? children({ item, index: index - 1 })
-        : children}
+    <div ref={rowRef} className="infinite-list-item" key={index} data-id={index}>
+      {typeof children === "function" ? children({ item, index: index - 1 }) : children}
     </div>
   );
 };
