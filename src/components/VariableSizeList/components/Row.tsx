@@ -24,6 +24,8 @@ const Row = ({
   loadMoreCB,
 }) => {
   const rowRef = useRef(null);
+  const isFirsrRef = useRef(false);
+  const lastItemRef = useRef(null);
   const shoulScrollUpToHidePullDom = index === 1 && isFirstRender.current;
 
   useEffect(() => {
@@ -37,7 +39,12 @@ const Row = ({
 
   useLayoutEffect(() => {
     updatePostionAndOffset();
-    updateScrollTop();
+    // updateScrollTop是副作用函数，解决严格模式下预发环境会执行2次问题
+    if(!isFirsrRef || lastItemRef.current !== item) {
+      updateScrollTop();
+    };
+    lastItemRef.current = item;
+    isFirsrRef.current = true;
   }, [item]);
 
   const updateScrollTop = () => {
