@@ -1,36 +1,42 @@
-import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
-import Loading from '../../Loading/';
+import React, { RefObject, useLayoutEffect } from "react";
+import Loading from "../../Loading/";
 
-const DownRefresh = ({
+interface DownRefreshProps {
+  refs: RefObject<HTMLDivElement>;
+  dataId: string | number;
+  topLoadMoreCallback: () => void;
+  hasMoreTopData: boolean;
+  loaderAtTop: boolean;
+}
+
+const DownRefresh: React.FC<DownRefreshProps> = ({
   refs,
   dataId,
   topLoadMoreCallback,
   hasMoreTopData,
   loaderAtTop,
-  loadMoreCB,
 }) => {
   useLayoutEffect(() => {
     if (!hasMoreTopData) return;
 
     const observer = new IntersectionObserver(
-      entries => {
+      (entries) => {
         if (entries[0].isIntersecting) {
           topLoadMoreCallback();
-          // loadMoreCB('top');
         }
       },
       {
         root: null,
-        rootMargin: '0px',
+        rootMargin: "0px",
         threshold: 0,
       }
     );
 
-    observer.observe(refs.current);
+    refs.current && observer.observe(refs.current);
 
     return () => {
       // clean函数之前之前，ref 已经没有了，所以上面要用 useLayoutEffect
-      observer.unobserve(refs.current);
+      refs.current && observer.unobserve(refs.current);
     };
   }, [hasMoreTopData]);
 

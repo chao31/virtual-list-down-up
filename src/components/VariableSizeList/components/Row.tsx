@@ -20,7 +20,6 @@ interface RowProps {
   loaderAtTop: boolean;
   loaderAtBottom: boolean;
   len: number;
-  loadMoreCB?: () => void;
 }
 
 const Row: React.FC<RowProps> = ({
@@ -40,12 +39,14 @@ const Row: React.FC<RowProps> = ({
   loaderAtTop,
   loaderAtBottom,
   len,
-  loadMoreCB,
 }) => {
   const rowRef = useRef<HTMLDivElement>(null);
   const isFirsrRef = useRef(false);
   const lastItemRef = useRef(null);
   const shoulScrollUpToHidePullDom = index === 1 && isFirstRender.current;
+  if (index === 1) {
+    console.log("shoulScrollUpToHidePullDom22: ", shoulScrollUpToHidePullDom);
+  }
 
   // 判断是否隐藏下拉刷新，第一次渲染且第一个dom加载完毕，会往上滚动，不展示下拉刷新
   useEffect(() => {
@@ -93,7 +94,6 @@ const Row: React.FC<RowProps> = ({
         refs={rowRef}
         dataId={index}
         topLoadMoreCallback={topLoadMoreCallback}
-        loadMoreCB={loadMoreCB}
         hasMoreTopData={hasMoreTopData}
         loaderAtTop={loaderAtTop}
       />
@@ -107,7 +107,6 @@ const Row: React.FC<RowProps> = ({
         refs={rowRef}
         dataId={index}
         bottomLoadMoreCallback={bottomLoadMoreCallback}
-        loadMoreCB={loadMoreCB}
         hasMoreBottomData={hasMoreBottomData}
         loaderAtBottom={loaderAtBottom}
       />

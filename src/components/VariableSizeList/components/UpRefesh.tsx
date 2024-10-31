@@ -1,11 +1,18 @@
-import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
-import Loading from '../../Loading';
+import React, { RefObject, useLayoutEffect } from "react";
+import Loading from "../../Loading";
 
-const UpRefesh = ({
+interface UpRefreshProps {
+  refs: RefObject<HTMLDivElement>;
+  dataId: string | number;
+  bottomLoadMoreCallback: () => void;
+  hasMoreBottomData: boolean;
+  loaderAtBottom: boolean;
+}
+
+const UpRefesh: React.FC<UpRefreshProps> = ({
   refs,
   dataId,
   bottomLoadMoreCallback,
-  loadMoreCB,
   hasMoreBottomData,
   loaderAtBottom,
 }) => {
@@ -13,25 +20,23 @@ const UpRefesh = ({
     if (!hasMoreBottomData) return;
 
     const observer = new IntersectionObserver(
-      entries => {
+      (entries) => {
         if (entries[0].isIntersecting) {
-          console.log('iiii', 666);
           bottomLoadMoreCallback();
-          // loadMoreCB('bottom');
         }
       },
       {
         root: null,
-        rootMargin: '0px',
+        rootMargin: "0px",
         threshold: 0,
       }
     );
 
-    observer.observe(refs.current);
+    refs.current && observer.observe(refs.current);
 
     return () => {
       // clean函数之前之前，ref 已经没有了，所以上面要用 useLayoutEffect
-      observer.unobserve(refs.current);
+      refs.current && observer.unobserve(refs.current);
     };
   }, [hasMoreBottomData]);
 
@@ -42,11 +47,7 @@ const UpRefesh = ({
       data-id={dataId}
       // style={{ display: hasMoreBottomData ? 'block' : 'none' }}
     >
-      {loaderAtBottom ? (
-        loaderAtBottom
-      ) : (
-        <Loading hasMore={hasMoreBottomData} />
-      )}
+      {loaderAtBottom ? loaderAtBottom : <Loading hasMore={hasMoreBottomData} />}
     </div>
   );
 };
