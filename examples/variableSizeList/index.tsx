@@ -1,13 +1,12 @@
-import React, { StrictMode } from 'react';
+import React, { StrictMode } from "react";
 
-import { createRoot } from 'react-dom/client'
-import './index.css'
+import { createRoot } from "react-dom/client";
+import "./index.css";
 
 // import { VariableSizeList } from 'virtual-list-down-up';
 // import { VariableSizeList } from '../../../src/components/';
-import VariableSizeList from '../../src/components/VariableSizeList';
-import * as faker from 'faker';
-
+import VariableSizeList from "../../src/components/VariableSizeList";
+import * as faker from "faker";
 
 declare global {
   interface Window {
@@ -20,27 +19,18 @@ let pageBottom = 1;
 const Index = () => {
   const [inputValue, setInputValue] = React.useState(20);
   const [hasMoreTopData, setHasMoreTopData] = React.useState(true);
-  console.log('hasMoreTopData: ', hasMoreTopData);
   const [hasMoreBottomData, setHasMoreBottomData] = React.useState(true);
   const ref = React.useRef(null);
 
   //所有列表数据
-  const listData = new Array(20)
-    .fill(true)
-    .map((_, index) => `第0页第${index + 1}个: ${faker.lorem.sentences()}`
-  );
-
-  console.log('listData: ', listData);
-
+  const listData = new Array(20).fill(true).map((_, index) => `第0页第${index + 1}个: ${faker.lorem.sentences()}`);
 
   // 模拟一个2秒后返回数据的请求
   const requestTopData = async () => {
-    console.log('请求了top数据');
     // 设置一个2秒的延迟
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     if (pageTop > 1) {
-      console.log('hasMoreTopData: ', 999);
       setHasMoreTopData(false);
       return [];
     }
@@ -50,14 +40,11 @@ const Index = () => {
     // 返回模拟数据
     return new Array(200)
       .fill(true)
-      .map(
-        (_, index) => `第${-1 * (pageTop - 1)}页${index + 1}个: ${faker.lorem.sentences()}`
-      );
+      .map((_, index) => `第${-1 * (pageTop - 1)}页${index + 1}个: ${faker.lorem.sentences()}`);
   };
 
   // 模拟一个2秒后返回数据的请求
   const requestBottomData = async () => {
-    console.log('请求了bottom数据');
     // if (pageBottom > 1) {
     //   setHasMoreBottomData(false);
     //   return [];
@@ -65,7 +52,7 @@ const Index = () => {
     // pageBottom += 1;
 
     // 设置一个2秒的延迟
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     // await new Promise(resolve => {
     //   window.dd = resolve;
     // });
@@ -79,10 +66,7 @@ const Index = () => {
     // 返回模拟数据
     return new Array(1)
       .fill(true)
-      .map(
-        (_, index) =>
-          `第${pageBottom - 1}页第${index + 1}个: ${faker.lorem.sentences()}`
-      );
+      .map((_, index) => `第${pageBottom - 1}页第${index + 1}个: ${faker.lorem.sentences()}`);
   };
 
   const Row = ({ item, index }) => {
@@ -91,7 +75,6 @@ const Index = () => {
         if (!ref.current) return;
         ref?.current?.delItem(index);
       }
-      console.log('index: ', index, item);
     };
 
     return (
@@ -102,7 +85,7 @@ const Index = () => {
     );
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!ref.current) return;
     ref.current.delItem(inputValue);
@@ -127,16 +110,8 @@ const Index = () => {
           pullUpCallback={requestBottomData}
           hasMoreTopData={hasMoreTopData}
           hasMoreBottomData={hasMoreBottomData}
-          loaderAtTop={
-            <div className="my-list-loader">
-              {hasMoreTopData ? 'loading...' : 'No more !'}
-            </div>
-          }
-          loaderAtBottom={
-            <div className="my-list-loader">
-              {hasMoreBottomData ? 'loading...' : 'No more !'}
-            </div>
-          }
+          loaderAtTop={<div className="my-list-loader">{hasMoreTopData ? "loading..." : "No more !"}</div>}
+          loaderAtBottom={<div className="my-list-loader">{hasMoreBottomData ? "loading..." : "No more !"}</div>}
         >
           {Row}
         </VariableSizeList>
@@ -144,11 +119,7 @@ const Index = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <label htmlFor="number">数字:</label>
-          <input
-            id="number"
-            defaultValue={inputValue}
-            onChange={e => setInputValue(+e.target.value)}
-          />
+          <input id="number" defaultValue={inputValue} onChange={(e) => setInputValue(+e.target.value)} />
           <button type="submit">提交</button>
         </form>
       </div>
@@ -156,9 +127,8 @@ const Index = () => {
   );
 };
 
-
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Index />
-  </StrictMode>,
-)
+  </StrictMode>
+);

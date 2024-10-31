@@ -76,12 +76,6 @@ const Index = fixedForwardRef<ExposeListData, VariableSizeListProps>((props: any
   const [start, setStart] = useState(0);
 
   const [vlistData, setVlistData] = useState([{ id: "267e90" }, ...listData, { id: "23ff8" }]);
-  const [vlistData2, setVlistData2] = useState([]);
-  window.vlistData = vlistData;
-  window.setVlistData = setVlistData;
-  window.vlistData2 = vlistData2;
-  window.setStart = setStart;
-  console.log(4459900);
 
   // 根据预估item高度，初始化一份list高度数组
   const initPositions = (len?) => {
@@ -124,7 +118,6 @@ const Index = fixedForwardRef<ExposeListData, VariableSizeListProps>((props: any
   const belowCount = Math.min(vlistData.length - end, bufferCount);
 
   const of = positions[start - aboveCount].top;
-  console.log("start - aboveCount: ", start - aboveCount, positions[start - aboveCount]);
 
   //获取真实显示列表数据
   const visibleData = vlistData.slice(start - aboveCount, end + belowCount);
@@ -144,7 +137,6 @@ const Index = fixedForwardRef<ExposeListData, VariableSizeListProps>((props: any
           // 因为callback更新拿不到上下文，所以通过ref获取最新的start
           const start = startRef.current;
           const newStart = start;
-          console.log("newStart: ", newStart);
           const yOld = getBottomDistance(start);
 
           // 渲染顶部加载更多list
@@ -186,10 +178,6 @@ const Index = fixedForwardRef<ExposeListData, VariableSizeListProps>((props: any
 
   // 如果某个 Item 的高度变化，需要当前 Item 的 bottom，以及后面 Item 的 top 和 bottom
   const updatePositions = (pos?: any) => {
-    if (pos) {
-      console.log("pos: ", pos);
-    }
-
     const oldPositions = pos || positions;
     let nodes = listVisibleDomRef.current.children;
     if (nodes && nodes.length > 0) {
@@ -212,18 +200,8 @@ const Index = fixedForwardRef<ExposeListData, VariableSizeListProps>((props: any
       });
       setPositions(_positions);
       positionsRef.current = _positions;
-      console.log("_positions: ", _positions);
     }
   };
-
-  // 渲染出来的第一个元素的top就是每次需要Offset的距离
-  // const updateStartOffset = (newStart = start) => {
-  //   const aboveCount = Math.min(newStart, bufferCount);
-  //   const _startOffset = positions[newStart - aboveCount].top;
-  //   // console.log('newStart: ', startOffset, _startOffset, aboveCount, positions);
-  //   console.log('newStart: ', positions[11].height, positions);
-  //   setStartOffset(_startOffset);
-  // };
 
   //获取列表起始索引
   const getStartIndex = (scrollTop = 0) => {
@@ -369,22 +347,18 @@ const Index = fixedForwardRef<ExposeListData, VariableSizeListProps>((props: any
   const scrollIntoView = (start, yOld) => {
     setStart(start);
     startRef.current = start;
-    console.log(2323, "前1", start);
 
     vlistCbRef.current = () => {
-      console.log("nihao", positions, start);
       // listConDomRef.current.scrollTop = positions[start].top;
     };
     requestAnimationFrame(() => {
       const rect = listConDomRef.current.querySelector(`.infinite-list-item[data-id="${start}"]`);
-      console.log("111rect: ", start, rect);
 
       // if(!rect) {
       //   requestAnimationFrame(() => {
       //     const rect = listConDomRef.current.querySelector(
       //       `.infinite-list-item[data-id="${start}"]`
       //     );
-      //     console.log('111rect: 33', start, rect);
 
       //     rect?.scrollIntoView();
 
@@ -408,7 +382,6 @@ const Index = fixedForwardRef<ExposeListData, VariableSizeListProps>((props: any
     //     `.infinite-list-item[data-id="${start}"]`
     //   );
     //   rect?.scrollIntoView();
-    //   console.log('111rect: ', start, rect);
 
     //   const yNew = getBottomDistance(start);
     //   const dValue = yNew - yOld;
@@ -432,13 +405,11 @@ const Index = fixedForwardRef<ExposeListData, VariableSizeListProps>((props: any
     let scrollTop = listConDomRef.current.scrollTop;
     //此时的开始索引
     const newStart = getStartIndex(scrollTop);
-    console.log(99999, "滚动33", start, newStart);
 
     if (newStart === null) return;
 
     setStart(newStart);
     startRef.current = newStart;
-    console.log(2323, "前2", newStart);
     // 拉到列表最底部时，resize窗口时，需要快速更新视图
     // updateStartOffset(newStart);
   };

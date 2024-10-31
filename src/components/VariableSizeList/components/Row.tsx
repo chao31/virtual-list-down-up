@@ -44,9 +44,6 @@ const Row: React.FC<RowProps> = ({
   const isFirsrRef = useRef(false);
   const lastItemRef = useRef(null);
   const shoulScrollUpToHidePullDom = index === 1 && isFirstRender.current;
-  if (index === 1) {
-    console.log("shoulScrollUpToHidePullDom22: ", shoulScrollUpToHidePullDom);
-  }
 
   // 判断是否隐藏下拉刷新，第一次渲染且第一个dom加载完毕，会往上滚动，不展示下拉刷新
   useEffect(() => {
