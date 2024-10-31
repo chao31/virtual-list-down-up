@@ -6,7 +6,7 @@ interface DownRefreshProps {
   dataId: string | number;
   topLoadMoreCallback: () => void;
   hasMoreTopData: boolean;
-  loaderAtTop: boolean;
+  loaderAtTop?: JSX.Element;
 }
 
 const DownRefresh: React.FC<DownRefreshProps> = ({

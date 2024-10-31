@@ -6,7 +6,7 @@ interface UpRefreshProps {
   dataId: string | number;
   bottomLoadMoreCallback: () => void;
   hasMoreBottomData: boolean;
-  loaderAtBottom: boolean;
+  loaderAtBottom?: JSX.Element;
 }
 
 const UpRefesh: React.FC<UpRefreshProps> = ({

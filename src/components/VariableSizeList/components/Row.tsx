@@ -15,10 +15,10 @@ interface RowProps {
   setStart: (value: number) => void;
   index: number;
   item: any;
-  updatePostionAndOffset: () => void;
+  updatePositions: () => void;
   children: React.ReactNode | Function;
-  loaderAtTop: boolean;
-  loaderAtBottom: boolean;
+  loaderAtTop?: JSX.Element;
+  loaderAtBottom?: JSX.Element;
   len: number;
 }
 
@@ -34,7 +34,7 @@ const Row: React.FC<RowProps> = ({
   setStart,
   index,
   item,
-  updatePostionAndOffset,
+  updatePositions,
   children,
   loaderAtTop,
   loaderAtBottom,
@@ -51,7 +51,7 @@ const Row: React.FC<RowProps> = ({
   }, []);
 
   useLayoutEffect(() => {
-    updatePostionAndOffset();
+    updatePositions();
     updateScrollTopWithoutSideEffect();
   }, [item]);
 

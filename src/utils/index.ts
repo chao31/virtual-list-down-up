@@ -1,5 +1,5 @@
 //二分法查找
-const binarySearch = (list, value) => {
+const binarySearch = (list: any[], value: number) => {
   let start = 0;
   let end = list.length - 1;
   let tempIndex = null;

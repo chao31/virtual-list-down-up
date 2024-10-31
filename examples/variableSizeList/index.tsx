@@ -89,12 +89,6 @@ const Index = () => {
     e.preventDefault();
     if (!ref.current) return;
     ref.current.delItem(inputValue);
-
-    // const list = [...ref.current.getListData()];
-    // list.splice(inputValue, 1);
-    // ref.current.setListData(list);
-    // ref.current.setListData([...list.slice(0, 1)]);
-    // ref.current.setListData([...list.slice(0, 19), ...list.slice(30)]);
   };
 
   return (
