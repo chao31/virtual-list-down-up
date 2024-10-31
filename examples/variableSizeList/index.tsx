@@ -1,36 +1,26 @@
 import React, { StrictMode } from "react";
-
 import { createRoot } from "react-dom/client";
-import "./index.css";
-
-// import { VariableSizeList } from 'virtual-list-down-up';
-// import { VariableSizeList } from '../../../src/components/';
 import VariableSizeList from "../../src/components/VariableSizeList";
 import * as faker from "faker";
 
-declare global {
-  interface Window {
-    dd: any;
-  }
-}
+import "./index.css";
+
 let pageTop = 1;
 let pageBottom = 1;
+//所有列表数据
+const listData = new Array(20).fill(true).map((_, index) => `第0页第${index + 1}个: ${faker.lorem.sentences()}`);
 
 const Index = () => {
-  const [inputValue, setInputValue] = React.useState(20);
   const [hasMoreTopData, setHasMoreTopData] = React.useState(true);
   const [hasMoreBottomData, setHasMoreBottomData] = React.useState(true);
   const ref = React.useRef(null);
-
-  //所有列表数据
-  const listData = new Array(20).fill(true).map((_, index) => `第0页第${index + 1}个: ${faker.lorem.sentences()}`);
 
   // 模拟一个2秒后返回数据的请求
   const requestTopData = async () => {
     // 设置一个2秒的延迟
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    if (pageTop > 1) {
+    if (pageTop > 3) {
       setHasMoreTopData(false);
       return [];
     }
@@ -38,33 +28,24 @@ const Index = () => {
     pageTop += 1;
 
     // 返回模拟数据
-    return new Array(200)
+    return new Array(20)
       .fill(true)
       .map((_, index) => `第${-1 * (pageTop - 1)}页${index + 1}个: ${faker.lorem.sentences()}`);
   };
 
   // 模拟一个2秒后返回数据的请求
   const requestBottomData = async () => {
-    // if (pageBottom > 1) {
-    //   setHasMoreBottomData(false);
-    //   return [];
-    // }
-    // pageBottom += 1;
-
     // 设置一个2秒的延迟
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    // await new Promise(resolve => {
-    //   window.dd = resolve;
-    // });
 
-    if (pageBottom > 1) {
+    if (pageBottom > 3) {
       setHasMoreBottomData(false);
       return [];
     }
     pageBottom += 1;
 
     // 返回模拟数据
-    return new Array(1)
+    return new Array(20)
       .fill(true)
       .map((_, index) => `第${pageBottom - 1}页第${index + 1}个: ${faker.lorem.sentences()}`);
   };
@@ -72,7 +53,6 @@ const Index = () => {
   const Row = ({ item, index }) => {
     const click = () => {
       if (window.confirm(`您确定要删除${index}吗？`)) {
-        if (!ref.current) return;
         ref?.current?.delItem(index);
       }
     };
@@ -85,16 +65,9 @@ const Index = () => {
     );
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!ref.current) return;
-    ref.current.delItem(inputValue);
-  };
-
   return (
     <div className="wrap">
       <div className="my-list">
-        {/* @ts-ignore */}
         <VariableSizeList
           ref={ref}
           listData={listData}
@@ -109,13 +82,6 @@ const Index = () => {
         >
           {Row}
         </VariableSizeList>
-      </div>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="number">数字:</label>
-          <input id="number" defaultValue={inputValue} onChange={(e) => setInputValue(+e.target.value)} />
-          <button type="submit">提交</button>
-        </form>
       </div>
     </div>
   );

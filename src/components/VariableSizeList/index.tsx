@@ -19,6 +19,7 @@ interface VariableSizeListProps {
 
 export interface ExposeListData {
   getListData: Function;
+  delItem: Function;
 }
 
 // https://www.totaltypescript.com/forwardref-with-generic-components
