@@ -1,7 +1,8 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 // import VariableSizeList from "../../src/components/VariableSizeList";
-import { Index } from "virtual-list-down-up";
+// import { VariableSizeList } from "virtual-list-down-up";
+import { VariableSizeList } from "../../dist";
 import * as faker from "faker";
 
 import "./index.css";
