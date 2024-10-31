@@ -9,6 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "peerDependencies": {
+    "react": ">=17"
+  },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
     "@types/faker": "^6.6.11",
