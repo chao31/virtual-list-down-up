@@ -5,7 +5,7 @@ import './index.css'
 
 // import { VariableSizeList } from 'virtual-list-down-up';
 // import { VariableSizeList } from '../../../src/components/';
-import VariableSizeList from '../../../src/components/VariableSizeList';
+import VariableSizeList from '../../src/components/VariableSizeList';
 import * as faker from 'faker';
 
 
