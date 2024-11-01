@@ -1,14 +1,11 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-// import VariableSizeList from "../../src/components/VariableSizeList";
+import VariableSizeList from "../../src/components/VariableSizeList";
 // import { VariableSizeList } from "virtual-list-down-up";
-// import "virtual-list-down-up/dist/style.css";
-import { VariableSizeList } from "../../dist";
-// import "../../dist/index.css";
+// import { VariableSizeList } from "../../dist";
 import * as faker from "faker";
 
 import "./index.css";
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 
 let pageTop = 1;
 let pageBottom = 1;
