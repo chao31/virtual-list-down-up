@@ -5,9 +5,27 @@
   "files": [
     "dist"
   ],
+  "repository": "https://github.com/chao31/virtual-list-down-up",
+  "homepage": "https://chao31.github.io/virtual-list-down-up-examaples",
   "main": "./dist/index.umd.cjs",
   "license": "MIT",
   "module": "./dist/index.js",
+  "author": "chao31",
+  "keywords": [
+    "Virtual Scrolling",
+    "virtual list",
+    "Pull up loading",
+    "pull down loading",
+    "react"
+  ],
+  "tags": [
+    "Virtual Scrolling",
+    "virtual list",
+    "Pull up loading",
+    "pull down loading",
+    "react",
+    "html"
+  ],
   "exports": {
     ".": {
       "import": "./dist/index.js",
