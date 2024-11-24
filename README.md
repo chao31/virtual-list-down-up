@@ -1,10 +1,18 @@
+# virtual-list-down-up
+[![npm](https://badgen.net/npm/v/virtual-list-down-up)](https://www.npmjs.com/package/virtual-list-down-up)
+[![last-commit](https://badgen.net/github/last-commit/chao31/virtual-list-down-up)](https://www.npmjs.com/package/virtual-list-down-up)
+[![license](https://badgen.net/github/license/chao31/virtual-list-down-up)](https://www.npmjs.com/package/virtual-list-down-up)
+
+⚡ A high speed react component for virtual list with pull-up loading and pull-down loading.
+
 ## Install
 
 ```
 npm i virtual-list-down-up
 ```
+## Demo
 
-[Demo](https://chao31.github.io/virtual-list-down-up-examaples)
+[Live Demo](https://chao31.github.io/virtual-list-down-up-examaples)
 
 ## Use
 
@@ -30,9 +38,13 @@ You need to pass in two required parameters：
 
 ## Features
 
-- virtual lists
-- loading more
-- pull down to load more
-- pull up to load more
-- easy to use
+- Real virtual scrolling 😍.
+- Row supports variable heights 🎉.
+- Supports loading more 🔥.
+- Supports pull down to load more 🌐.
+- Supports pull up to load more 😍.
+- Responsive component.
+- Simple configuration, ready to use out of the box.
+- Thorough documentation .
+- High speed .
 
