@@ -36,6 +36,21 @@ You need to pass in two required parameters：
 -  `listData`： List data 
 -  `estimatedItemSize`：Estimated height of each row of the list. If you don't know how high each row is, whether this height is accurate or not is not important and does not affect the rendering of the virtual list. If you still hesitate to set the appropriate height, then set the minimum height
 
+## Other Props
+
+|                           Name                            |               Description                | 
+|        :-----------------------------------------:        |    :-------------------------:    |
+|        **listData**                |       List data 
+|        **estimatedItemSize**                |      Estimated height of each row of the list
+|        **bufferScale**                |       Buffer height ratio
+|        **pullDownCallback**                |       Pull down refresh callback
+|        **pullUpCallback**                |       Pull up refresh callback
+|        **hasMoreTopData**                |       Pull down refresh to see if there is more data
+|        **hasMoreBottomData**                |       Pull up refresh to see if there is more data
+|        **loaderAtTop**                |       Custom loading component at the top
+|        **loaderAtBottom**                |       Custom loading component at the bottom
+
+
 ## Features
 
 - Real virtual scrolling 😍.
